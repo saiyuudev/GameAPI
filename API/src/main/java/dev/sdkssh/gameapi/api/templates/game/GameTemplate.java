@@ -29,4 +29,7 @@ public abstract class GameTemplate<T extends GamePlayerTemplate> {
         return players.stream().filter(p -> p.getPlayerUUID().equalsIgnoreCase(uuid)).findFirst();
     }
 
+    public void removePlayer(String uuid){
+        players.remove(getPlayer(uuid));
+    }
 }
