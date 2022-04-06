@@ -19,6 +19,9 @@ public abstract class GamePlayerTemplate {
         return Bukkit.getPlayer(UUID.fromString(PlayerUUID));
     }
 
-
     public abstract void play();
+
+    public abstract void onJoin();
+
+    public abstract void onQuit();
 }
