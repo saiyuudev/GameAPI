@@ -19,7 +19,7 @@ public abstract class GameTemplate<T extends GamePlayerTemplate> {
 
     public abstract void onStart();
 
-    public abstract void Win(Player p);
+    public abstract void win(Player p);
 
     public void addPlayer(Player player){
         T gameplayer = getNewPlayer(player);
