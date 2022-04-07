@@ -1,4 +1,4 @@
-package dev.sdkssh.gameapi.api.templates.players;
+package dev.sdkssh.gameapi.api.templates.player;
 
 import lombok.Getter;
 import org.bukkit.Bukkit;
