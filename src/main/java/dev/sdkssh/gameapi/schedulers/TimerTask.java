@@ -36,4 +36,10 @@ public class TimerTask extends BukkitRunnable {
     public static boolean isStart(){
         return task != null;
     }
+
+    @Override
+    public synchronized void cancel() throws IllegalStateException {
+        task = null;
+        super.cancel();
+    }
 }
