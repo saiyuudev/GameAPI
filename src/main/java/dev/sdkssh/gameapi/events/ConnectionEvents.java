@@ -20,6 +20,9 @@ public class ConnectionEvents implements Listener {
             if(Properties.PLAYERS_START.getValue() == game.getPlayers().size() && !TimerTask.isStart()){
                 new TimerTask(Properties.START_TIMER.getValue()).runTaskTimer(GameAPI.getPlugin(), 0, 20);
             }
+            if(Properties.PLAYERS_FORCE_START.getValue() == game.getPlayers().size() && TimerTask.isStart()){
+                TimerTask.getTask().setTimer(5);
+            }
         }
     }
 
@@ -27,6 +30,11 @@ public class ConnectionEvents implements Listener {
     public void onQuit(PlayerQuitEvent e){
         if(GameRegister.isRegistered()){
             GameRegister.getGame().removePlayer(e.getPlayer().getUniqueId().toString());
+            if(TimerTask.isStart()){
+                if(GameRegister.getGame().getPlayers().size() < Properties.PLAYERS_START.getValue()){
+                    TimerTask.getTask().cancel();
+                }
+            }
         }
     }
 }
