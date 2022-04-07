@@ -21,13 +21,15 @@ public abstract class GameTemplate<T extends GamePlayerTemplate> {
 
     public abstract void onWin(Player p);
 
-    public void addPlayer(T player){
-        players.add(player);
+    public void addPlayer(Player player){
+        players.add(getNewPlayer(player));
     }
 
     public Optional<T> getPlayer(String uuid){
         return players.stream().filter(p -> p.getPlayerUUID().equalsIgnoreCase(uuid)).findFirst();
     }
+
+    public abstract T getNewPlayer(Player player);
 
     public void removePlayer(String uuid){
         players.remove(getPlayer(uuid));
