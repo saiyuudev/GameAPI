@@ -2,7 +2,9 @@ package dev.sdkssh.gameapi.events;
 
 import dev.sdkssh.gameapi.GameAPI;
 import dev.sdkssh.gameapi.api.properties.Properties;
+import dev.sdkssh.gameapi.api.states.GameSTATE;
 import dev.sdkssh.gameapi.api.templates.game.GameTemplate;
+import dev.sdkssh.gameapi.api.templates.player.GamePlayerTemplate;
 import dev.sdkssh.gameapi.register.GameRegister;
 import dev.sdkssh.gameapi.schedulers.TimerTask;
 import org.bukkit.event.EventHandler;
@@ -15,8 +17,8 @@ public class ConnectionEvents implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         if(GameRegister.isRegistered()){
-            GameRegister.getGame().addPlayer(e.getPlayer());
             GameTemplate game = GameRegister.getGame();
+            GameRegister.getGame().addPlayer(e.getPlayer());
             if(Properties.PLAYERS_START.getValue() == game.getPlayers().size() && !TimerTask.isStart()){
                 new TimerTask(Properties.START_TIMER.getValue()).runTaskTimer(GameAPI.getPlugin(), 0, 20);
             }
@@ -29,12 +31,16 @@ public class ConnectionEvents implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent e){
         if(GameRegister.isRegistered()){
-            GameRegister.getGame().removePlayer(e.getPlayer().getUniqueId().toString());
-            if(TimerTask.isStart()){
-                if(GameRegister.getGame().getPlayers().size() < Properties.PLAYERS_START.getValue()){
+            GameTemplate game = GameRegister.getGame();
+            if(game.getState() == GameSTATE.INGAME){
+                ((GamePlayerTemplate) game.getPlayer(e.getPlayer().getUniqueId().toString()).get()).onQuitInGame();
+            }
+            else if(TimerTask.isStart() && game.getState() == GameSTATE.LOBBY){
+                if(game.getPlayers().size() < Properties.PLAYERS_START.getValue()){
                     TimerTask.getTask().cancel();
                 }
             }
+            game.removePlayer(e.getPlayer().getUniqueId().toString());
         }
     }
 }
