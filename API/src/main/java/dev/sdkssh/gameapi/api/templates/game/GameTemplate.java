@@ -19,7 +19,12 @@ public abstract class GameTemplate<T extends GamePlayerTemplate> {
 
     public abstract void onStart();
 
-    public abstract void win(Player p);
+    public abstract void onWin(Player p);
+
+    public void win(Player p){
+        setState(GameSTATE.WIN);
+        onWin(p);
+    }
 
     public void addPlayer(Player player){
         T gameplayer = getNewPlayer(player);
