@@ -24,4 +24,6 @@ public abstract class GamePlayerTemplate {
     public abstract void onJoin();
 
     public abstract void onQuit();
+
+    public abstract void onQuitInGame();
 }
