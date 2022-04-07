@@ -22,7 +22,9 @@ public abstract class GameTemplate<T extends GamePlayerTemplate> {
     public abstract void Win(Player p);
 
     public void addPlayer(Player player){
-        players.add(getNewPlayer(player));
+        T gameplayer = getNewPlayer(player);
+        gameplayer.onJoin();
+        players.add(gameplayer);
     }
 
     public Optional<T> getPlayer(String uuid){
@@ -32,6 +34,9 @@ public abstract class GameTemplate<T extends GamePlayerTemplate> {
     public abstract T getNewPlayer(Player player);
 
     public void removePlayer(String uuid){
-        players.remove(getPlayer(uuid));
+        getPlayer(uuid).ifPresent(p -> {
+            p.onQuit();
+            players.remove(p);
+        });
     }
 }
