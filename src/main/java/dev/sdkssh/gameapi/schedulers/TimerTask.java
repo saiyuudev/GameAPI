@@ -24,6 +24,10 @@ public class TimerTask extends BukkitRunnable {
     public void run() {
         if(timer == 0){
             GameRegister.getGame().onStart();
+            GameRegister.getGame().getPlayers().forEach(p -> {
+                GamePlayerTemplate playerTemplate = (GamePlayerTemplate) p;
+                playerTemplate.onPlay();
+            });
             this.cancel();
         }
         GameRegister.getGame().getPlayers().forEach(p -> {
