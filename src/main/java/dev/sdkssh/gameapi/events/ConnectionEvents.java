@@ -7,6 +7,7 @@ import dev.sdkssh.gameapi.api.templates.game.GameTemplate;
 import dev.sdkssh.gameapi.api.templates.player.GamePlayerTemplate;
 import dev.sdkssh.gameapi.register.GameRegister;
 import dev.sdkssh.gameapi.schedulers.TimerTask;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -34,13 +35,17 @@ public class ConnectionEvents implements Listener {
             GameTemplate game = GameRegister.getGame();
             if(game.getState() == GameSTATE.INGAME){
                 ((GamePlayerTemplate) game.getPlayer(e.getPlayer().getUniqueId().toString()).get()).onQuitInGame();
+                game.removePlayer(e.getPlayer().getUniqueId().toString());
+                if(game.getPlayers().size() == 1){
+                    game.win(((GamePlayerTemplate) game.getPlayers().get(0)).getPlayer());
+                }
+                return;
             }
             else if(TimerTask.isStart() && game.getState() == GameSTATE.LOBBY){
                 if(game.getPlayers().size() < Properties.PLAYERS_START.getValue()){
                     TimerTask.getTask().cancel();
                 }
             }
-            game.removePlayer(e.getPlayer().getUniqueId().toString());
         }
     }
 }
