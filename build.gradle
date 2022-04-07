@@ -27,6 +27,11 @@ dependencies {
     compile project (":API")
 }
 
+jar {
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
 
 test {
     useJUnitPlatform()
