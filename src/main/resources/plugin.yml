@@ -1,0 +1,4 @@
+name: GameAPI
+main: dev.sdkssh.gameapi.GameAPI
+version: 1.0
+authors: ["SDKSSH"]
