@@ -7,6 +7,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class ItemBuilder {
     @Setter
     private boolean unbreakable;
 
-    public ItemBuilder(Material material, int amount){
+    public ItemBuilder(@NotNull Material material, int amount){
         this.material = material;
         this.amount = amount;
         this.lores = new ArrayList<>();
@@ -47,18 +48,34 @@ public class ItemBuilder {
         this.displayName = null;
     }
 
-    public void addLine(String... lines){
+    public ItemBuilder(@NotNull Material material){
+        this(material, 1);
+    }
+
+    public ItemBuilder(@NotNull ItemStack it){
+        this.material = it.getType();
+        ItemMeta itm = it.getItemMeta();
+        this.durability = it.getDurability();
+        this.unbreakable = itm.spigot().isUnbreakable();
+        this.enchantments = (HashMap<Enchantment, Integer>) itm.getEnchants();
+        this.lores = itm.getLore();
+        this.flags = (List<ItemFlag>) itm.getItemFlags();
+        this.displayName = itm.getDisplayName();
+        this.amount = it.getAmount();
+    }
+
+    public void addLine(@NotNull String... lines){
         lores.addAll(Arrays.asList(lines));
     }
 
-    public void addEnchantment(Enchantment enchantment, int level){
+    public void addEnchantment(@NotNull Enchantment enchantment, int level){
         enchantments.put(enchantment, level);
     }
 
     public ItemStack build(){
         ItemStack it = new ItemStack(material, amount, durability);
         ItemMeta itemMeta = it.getItemMeta();
-        if(!displayName.isEmpty()){
+            if(!displayName.isEmpty()){
             itemMeta.setDisplayName(displayName);
         }
         if(!lores.isEmpty()){
