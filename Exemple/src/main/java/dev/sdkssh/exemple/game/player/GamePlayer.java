@@ -4,6 +4,8 @@ import dev.sdkssh.gameapi.api.templates.player.GamePlayerTemplate;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class GamePlayer extends GamePlayerTemplate {
@@ -22,12 +24,12 @@ public class GamePlayer extends GamePlayerTemplate {
     }
 
     @Override
-    public void onJoin() {
+    public void onJoin(PlayerJoinEvent event) {
 
     }
 
     @Override
-    public void onQuit() {
+    public void onQuit(PlayerQuitEvent event) {
 
     }
 
