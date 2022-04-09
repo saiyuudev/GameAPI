@@ -1,4 +1,2 @@
 rootProject.name = 'GameAPI'
 include 'API'
-include 'Utils'
-
