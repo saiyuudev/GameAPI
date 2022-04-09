@@ -34,6 +34,8 @@ public class ConnectionEvents implements Listener {
         if(GameRegister.isRegistered()){
             GameTemplate game = GameRegister.getGame();
             GameRegister.getGame().addPlayer(e.getPlayer());
+            GamePlayerTemplate player =  ((GamePlayerTemplate) game.getPlayer(e.getPlayer().getUniqueId().toString()).get());
+            player.onJoin(e);
             if(Properties.PLAYERS_START.getValue() == game.getPlayers().size() && !TimerTask.isStart()){
                 new TimerTask(Properties.START_TIMER.getValue()).runTaskTimer(GameAPI.getPlugin(), 0, 20);
             }
