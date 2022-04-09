@@ -1,2 +1,4 @@
 rootProject.name = 'GameAPI'
 include 'API'
+include 'Exemple'
+
