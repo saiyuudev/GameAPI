@@ -47,8 +47,10 @@ public class ConnectionEvents implements Listener {
     public void onQuit(PlayerQuitEvent e){
         if(GameRegister.isRegistered()){
             GameTemplate game = GameRegister.getGame();
+            GamePlayerTemplate player =  ((GamePlayerTemplate) game.getPlayer(e.getPlayer().getUniqueId().toString()).get());
             if(game.getState() == GameSTATE.INGAME){
-                ((GamePlayerTemplate) game.getPlayer(e.getPlayer().getUniqueId().toString()).get()).onQuitInGame();
+                player.onQuitInGame();
+                player.onQuit(e);
                 game.removePlayer(e.getPlayer().getUniqueId().toString());
                 if(game.getPlayers().size() == 1){
                     game.win(((GamePlayerTemplate) game.getPlayers().get(0)).getPlayer());
@@ -56,11 +58,12 @@ public class ConnectionEvents implements Listener {
                 return;
             }
             else if(TimerTask.isStart() && game.getState() == GameSTATE.LOBBY){
+                player.onQuit(e);
+                game.removePlayer(e.getPlayer().getUniqueId().toString());
                 if(game.getPlayers().size() < Properties.PLAYERS_START.getValue()){
                     TimerTask.getTask().cancel();
                 }
             }
-            game.removePlayer(e.getPlayer().getUniqueId().toString());
         }
     }
 }
