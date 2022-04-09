@@ -60,6 +60,7 @@ public class ConnectionEvents implements Listener {
                     TimerTask.getTask().cancel();
                 }
             }
+            game.removePlayer(e.getPlayer().getUniqueId().toString());
         }
     }
 }

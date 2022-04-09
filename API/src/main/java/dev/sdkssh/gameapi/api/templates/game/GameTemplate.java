@@ -30,7 +30,6 @@ public abstract class GameTemplate<T extends GamePlayerTemplate> {
 
     public void addPlayer(@NotNull Player player){
         T gameplayer = getNewPlayer(player);
-        gameplayer.onJoin();
         players.add(gameplayer);
     }
 
@@ -44,7 +43,6 @@ public abstract class GameTemplate<T extends GamePlayerTemplate> {
 
     public void removePlayer(@NotNull String uuid){
         getPlayer(uuid).ifPresent(p -> {
-            p.onQuit();
             players.remove(p);
         });
     }
