@@ -23,6 +23,9 @@ public class GamePlayer extends GamePlayerTemplate {
 
     }
 
+    private void giveKit(Player p){
+    }
+
     @Override
     public void onJoin(PlayerJoinEvent event) {
 
