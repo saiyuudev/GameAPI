@@ -25,4 +25,5 @@ dependencies {
     compileOnly "org.jetbrains:annotations:16.0.2"
     annotationProcessor 'org.jetbrains:annotations:16.0.2'
     compile rootProject
+    compile project(":API")
 }
