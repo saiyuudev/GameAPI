@@ -2,6 +2,7 @@ package dev.sdkssh.gameapi.schedulers;
 
 import dev.sdkssh.gameapi.api.states.GameSTATE;
 import dev.sdkssh.gameapi.api.templates.game.GameTemplate;
+import dev.sdkssh.gameapi.api.templates.player.GamePlayerTemplate;
 import dev.sdkssh.gameapi.register.GameRegister;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,7 @@ public class TimerTask extends BukkitRunnable {
         if(timer == 0){
             g.onStart();
             g.setState(GameSTATE.INGAME);
+            g.executeToAllPlayers(p -> ((GamePlayerTemplate) p).onPlay());
             this.cancel();
             return;
         }
