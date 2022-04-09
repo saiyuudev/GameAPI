@@ -23,6 +23,6 @@ public class ExempleGame extends GameTemplate<GamePlayer> {
 
     @Override
     public GamePlayer getNewPlayer(@NotNull Player player) {
-        return null;
+        return new GamePlayer(player);
     }
 }

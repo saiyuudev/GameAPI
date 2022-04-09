@@ -5,8 +5,11 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class GamePlayer extends GamePlayerTemplate {
+    private int life;
+
     public GamePlayer(@NotNull Player player) {
         super(player);
+        this.life = 5;
     }
 
     @Override
