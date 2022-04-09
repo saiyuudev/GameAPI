@@ -1,0 +1,4 @@
+name: Exemple
+authors: ["SDKSSH"]
+main: dev.sdkssh.exemple.ExemplePlugin
+version: 1.0
