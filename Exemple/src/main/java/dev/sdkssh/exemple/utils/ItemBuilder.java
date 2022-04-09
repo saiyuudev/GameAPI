@@ -64,12 +64,14 @@ public class ItemBuilder {
         this.amount = it.getAmount();
     }
 
-    public void addLine(@NotNull String... lines){
+    public ItemBuilder addLine(@NotNull String... lines){
         lores.addAll(Arrays.asList(lines));
+        return this;
     }
 
-    public void addEnchantment(@NotNull Enchantment enchantment, int level){
+    public ItemBuilder addEnchantment(@NotNull Enchantment enchantment, int level){
         enchantments.put(enchantment, level);
+        return this;
     }
 
     public ItemStack build(){
