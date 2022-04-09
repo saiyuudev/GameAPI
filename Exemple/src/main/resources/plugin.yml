@@ -2,3 +2,4 @@ name: Exemple
 author: SDKSSH
 main: dev.sdkssh.exemple.ExemplePlugin
 version: 1.0
+depend: [GameAPI]
