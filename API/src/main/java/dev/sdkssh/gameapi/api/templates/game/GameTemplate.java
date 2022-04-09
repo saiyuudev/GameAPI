@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public abstract class GameTemplate<T extends GamePlayerTemplate> {
     @Getter
@@ -33,6 +34,8 @@ public abstract class GameTemplate<T extends GamePlayerTemplate> {
         players.add(gameplayer);
     }
 
+    public abstract void onTimerMove(int time);
+
     public Optional<T> getPlayer(@NotNull String uuid){
         return players.stream().filter(p -> p.getPlayerUUID().equalsIgnoreCase(uuid)).findFirst();
     }
@@ -44,5 +47,9 @@ public abstract class GameTemplate<T extends GamePlayerTemplate> {
             p.onQuit();
             players.remove(p);
         });
+    }
+
+    public void executeToAllPlayers(Consumer<T> consumer){
+        getPlayers().forEach(p -> consumer.accept(p));
     }
 }
