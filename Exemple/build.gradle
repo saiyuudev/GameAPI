@@ -24,4 +24,5 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
     compileOnly "org.jetbrains:annotations:16.0.2"
     annotationProcessor 'org.jetbrains:annotations:16.0.2'
+    compile rootProject
 }
