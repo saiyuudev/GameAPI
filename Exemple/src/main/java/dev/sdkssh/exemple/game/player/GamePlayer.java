@@ -25,10 +25,11 @@ public class GamePlayer extends GamePlayerTemplate {
 
     @Override
     public void onPlay() {
-
+        giveKit();
     }
 
-    public void giveKit(Player p){
+    public void giveKit(){
+        Player p = getPlayer();
         PlayerInventory inv = p.getInventory();
         ItemStack[] armors = new ItemStack[4];
         armors[0] = new ItemBuilder(Material.IRON_HELMET).build();
