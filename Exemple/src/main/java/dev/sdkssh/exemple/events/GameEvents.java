@@ -1,6 +1,6 @@
 package dev.sdkssh.exemple.events;
 
-import org.bukkit.event.Listener;
+import dev.sdkssh.gameapi.api.events.GameAPIEvent;
 
-public class GameEvents implements Listener {
+public class GameEvents extends GameAPIEvent {
 }
