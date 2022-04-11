@@ -3,7 +3,6 @@ package dev.sdkssh.exemple.game;
 import dev.sdkssh.exemple.game.player.GamePlayer;
 import dev.sdkssh.exemple.utils.ChatUtils;
 import dev.sdkssh.gameapi.api.templates.game.GameTemplate;
-import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
