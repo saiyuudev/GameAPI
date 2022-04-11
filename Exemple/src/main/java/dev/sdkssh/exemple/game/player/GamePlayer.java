@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.jetbrains.annotations.NotNull;
 
 public class GamePlayer extends GamePlayerTemplate {
@@ -28,12 +29,13 @@ public class GamePlayer extends GamePlayerTemplate {
     }
 
     public void giveKit(Player p){
+        PlayerInventory inv = p.getInventory();
         ItemStack[] armors = new ItemStack[4];
         armors[0] = new ItemBuilder(Material.IRON_HELMET).build();
         armors[1] = new ItemBuilder(Material.GOLD_CHESTPLATE).addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2).build();
         armors[2] = new ItemBuilder(Material.IRON_LEGGINGS).build();
         armors[3] = new ItemBuilder(Material.IRON_BOOTS).build();
-        p.getInventory().setArmorContents(armors);
+        inv.setArmorContents(armors);
     }
 
     @Override
