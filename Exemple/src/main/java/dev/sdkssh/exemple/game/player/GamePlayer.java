@@ -39,6 +39,8 @@ public class GamePlayer extends GamePlayerTemplate {
         inv.setItem(0, new ItemBuilder(Material.IRON_SWORD).build());
         inv.setItem(8, new ItemBuilder(Material.GOLDEN_APPLE, 3).build());
         p.updateInventory();
+        p.setHealth(20D);
+        p.setFoodLevel(20);
     }
 
     @Override
