@@ -36,6 +36,9 @@ public class GamePlayer extends GamePlayerTemplate {
         armors[2] = new ItemBuilder(Material.IRON_LEGGINGS).build();
         armors[3] = new ItemBuilder(Material.IRON_BOOTS).build();
         inv.setArmorContents(armors);
+        inv.setItem(0, new ItemBuilder(Material.IRON_SWORD).build());
+        inv.setItem(8, new ItemBuilder(Material.GOLDEN_APPLE, 3).build());
+        p.updateInventory();
     }
 
     @Override
