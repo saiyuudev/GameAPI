@@ -3,6 +3,7 @@ package dev.sdkssh.exemple.game;
 import dev.sdkssh.exemple.game.player.GamePlayer;
 import dev.sdkssh.exemple.utils.ChatUtils;
 import dev.sdkssh.gameapi.api.templates.game.GameTemplate;
+import org.bukkit.GameMode;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -10,12 +11,12 @@ import org.jetbrains.annotations.NotNull;
 public class ExempleGame extends GameTemplate<GamePlayer> {
     @Override
     public void onStart() {
-
     }
 
     @Override
     public void onWin(@NotNull Player p) {
-
+        p.sendMessage("§6§lYAY !! §eYou §6§lWIN §econgratulations !");
+        p.setGameMode(GameMode.SPECTATOR);
     }
 
     @Override
