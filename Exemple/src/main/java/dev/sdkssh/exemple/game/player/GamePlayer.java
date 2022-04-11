@@ -1,5 +1,6 @@
 package dev.sdkssh.exemple.game.player;
 
+import dev.sdkssh.exemple.utils.ChatUtils;
 import dev.sdkssh.exemple.utils.ItemBuilder;
 import dev.sdkssh.gameapi.api.templates.player.GamePlayerTemplate;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class GamePlayer extends GamePlayerTemplate {
 
     @Override
     public void onPlay() {
+        ChatUtils.sendTitle(getPlayer(), 5, 30, 5, "§eStarting now !", "§6Good luck !");
         giveKit();
     }
 
