@@ -33,7 +33,7 @@ public class GamePlayer extends GamePlayerTemplate {
         armors[1] = new ItemBuilder(Material.GOLD_CHESTPLATE).addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2).build();
         armors[2] = new ItemBuilder(Material.IRON_LEGGINGS).build();
         armors[3] = new ItemBuilder(Material.IRON_BOOTS).build();
-
+        p.getInventory().setArmorContents(armors);
     }
 
     @Override
