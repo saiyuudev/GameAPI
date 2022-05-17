@@ -26,6 +26,10 @@ public class GamePlayer extends GamePlayerTemplate {
         this.life = 5;
     }
 
+    public void removeLife(int i){
+        life = life-i;
+    }
+
     @Override
     public void onPlay() {
         ChatUtils.sendTitle(getPlayer(), 5, 30, 5, "§eStarting now !", "§6Good luck !");
