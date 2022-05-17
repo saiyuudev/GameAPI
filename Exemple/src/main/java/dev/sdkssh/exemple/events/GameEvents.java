@@ -1,8 +1,11 @@
 package dev.sdkssh.exemple.events;
 
+import dev.sdkssh.exemple.game.ExempleGame;
 import dev.sdkssh.exemple.game.player.GamePlayer;
 import dev.sdkssh.gameapi.api.events.GameAPIEvent;
 import dev.sdkssh.gameapi.register.GameRegister;
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
@@ -17,7 +20,14 @@ public class GameEvents extends GameAPIEvent {
         Player p = e.getEntity();
         GamePlayer gp = getPlayer(p);
         p.spigot().respawn();
-        if(gp.getLife() == 1){
+        gp.removeLife(1);
+        if(gp.getLife() == 0){
+           getGame().removePlayer(p.getUniqueId().toString());
+            Bukkit.broadcastMessage("§c§l"+p.getName()+" §7is eleminate ! §c§l"+getGame().getPlayers().size()+" §7remaining !");
+            p.setGameMode(GameMode.SPECTATOR);
+            if(GameRegister.getGame().getPlayers().size() == 1){
+                GameRegister.getGame().win(getGame().getPlayers().get(0).getPlayer());
+            }
             return;
         }else{
             gp.giveKit();
@@ -37,5 +47,9 @@ public class GameEvents extends GameAPIEvent {
     @EventHandler
     public void onWeather(WeatherChangeEvent e){
         e.setCancelled(e.toWeatherState());
+    }
+
+    public ExempleGame getGame(){
+        return (ExempleGame) GameRegister.getGame();
     }
 }
