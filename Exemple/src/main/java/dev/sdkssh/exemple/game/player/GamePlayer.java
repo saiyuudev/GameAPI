@@ -5,6 +5,8 @@ import dev.sdkssh.exemple.utils.ItemBuilder;
 import dev.sdkssh.gameapi.api.templates.player.GamePlayerTemplate;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -44,6 +46,7 @@ public class GamePlayer extends GamePlayerTemplate {
         p.updateInventory();
         p.setHealth(20D);
         p.setFoodLevel(20);
+        p.teleport(new Location(Bukkit.getWorld("world"), 15, 2, 10));
     }
 
     @Override

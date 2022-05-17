@@ -15,10 +15,14 @@ public class GameEvents extends GameAPIEvent {
         Player p = e.getEntity();
         GamePlayer gp = getPlayer(p);
         if(gp.getLife() == 1){
-            //TODO: ELIMINATE PLAYER
+
             return;
+        }else{
+            p.spigot().respawn();
+            gp.giveKit();
         }
     }
+
 
     public GamePlayer getPlayer(Player p){
         return (GamePlayer) GameRegister.getGame().getPlayer(p.getUniqueId().toString()).get();
