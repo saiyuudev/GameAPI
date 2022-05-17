@@ -6,5 +6,5 @@
     <img src="https://img.shields.io/github/license/SDKSSH/GameAPI?style=for-the-badge"/>
 </p>
 <p align="center">
-    <img src="https://img.shields.io/badge/release-Soon-red.svg?style=for-the-badge"/>
+    <img src="https://img.shields.io/badge/release-v.1.0-red.svg?style=for-the-badge"/>
 </p>
